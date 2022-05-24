@@ -22,4 +22,18 @@ export class LibrarianService {
     });
     return obs;
   }
+
+  findName(fname: string, lname: string) {
+    let obs = new Observable((observer) => {
+      this.http.get(`/api/student/?fname=${fname}&lname=${lname}`, { observe: 'response' }).subscribe({
+        next: (data) => {
+          observer.next(data);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    });
+    return obs;
+  }
 }

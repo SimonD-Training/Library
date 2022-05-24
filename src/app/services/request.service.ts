@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +64,20 @@ export class RequestService {
             console.log(err);
           },
         });
+    });
+    return obs;
+  }
+
+  books() {
+    let obs = new Observable((observer) => {
+      this.http.get('/api/books', { observe: 'response' }).subscribe({
+        next: (data) => {
+          observer.next(data);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     });
     return obs;
   }

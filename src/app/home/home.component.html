@@ -1,0 +1,20 @@
+<main>
+    <header>
+        <span>
+            Library Faux
+        </span>
+        <span>
+            Librarian Entry
+        </span>
+    </header>
+    <table>
+        <tr>
+            <th colspan="4">Books</th>
+        </tr>
+        <tr *ngFor="let book of Books">
+            <td>{{book.title}}</td>
+            <td>{{book.genre}}</td>
+            <td colspan="2"><a (click)="request(book.id, fname, lname)">Borrow This Book</a></td>
+        </tr>
+    </table>
+</main>

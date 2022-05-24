@@ -47,6 +47,20 @@ router.post("/login", (req, res) => {
   );
 });
 
+router.get("/api/books", (req, res) => {
+    database.query("SELECT * FROM books", (err, rows) => {
+        if (err) throw err
+        else res.status(200).send(rows);
+    });
+});
+
+router.get("/api/student/?*", (req, res) => {
+    database.query(`SELECT id FROM students WHERE fname = '${req.params.fname}' AND lname = '${req.params.lname}'`, (err, rows) => {
+        if (err) throw err
+        else if (rows.length == 1) res.status(200).send(rows);
+    });
+});
+
 router.post("/request", (req, res) => {
   // req.body.student_id
   // req.body.book_id
